@@ -12,17 +12,17 @@ public class Main {
         String request;
         String response;
 
-        request = "ADD\ntitle=Книга\nсоntent=Туманность Андромеды";
+        request = "ADD\ntitle=Книга\nсоntent=ТуманностьАндромеды";
         response = controller.doAction(request);
         System.out.println(response);
 
-        request = "ADD\ntitle=Книга\nсоntent=Гарри Поттер";
+        request = "ADD\ntitle=Книга\nсоntent=ГарриПоттер";
         response = controller.doAction(request);
         System.out.println(response);
 
-        request = "UPDATE\nid=2\ntitle=Книга\ncontent=Гарри Поттер 2 часть\ndate=2023-08-08";
-        response = controller.doAction(request);
-        System.out.println(response);
+        //    request = "UPDATE\nid=2\ntitle=Книга\ncontent=ГарриПоттер2часть";
+        //    response = controller.doAction(request);
+        //   System.out.println(response);
 
         request = "DELETE\nid=1";
         response = controller.doAction(request);

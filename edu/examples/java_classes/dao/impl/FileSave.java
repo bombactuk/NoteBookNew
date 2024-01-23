@@ -13,7 +13,7 @@ public class FileSave {
         try (FileWriter writer = new FileWriter("mubook.txt", false)) {
 
             for (Note s : notes) {
-                writer.write(s.getId() +
+                writer.write(" Id:" + s.getId() +
                         " Title:" + s.getTitle() +
                         " Content:" + s.getContent() +
                         " Date:" + s.getD());

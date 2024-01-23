@@ -22,18 +22,18 @@ public class UpdateNoteCommand implements Command {
         String[] params;
         Note newNote;
 
-        params = request.split("\n");
-        newNote = new Note();
-
-        newNote.setId(Integer.parseInt(params[1].split("=")[1]));
-        newNote.setTitle(params[2].split("=")[1]);
-        newNote.setContent(params[3].split("=")[1]);
-
-        SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("yyyy-mm-dd");
-        Date date;
-
         try {
+            params = request.split("\n");
+            newNote = new Note();
+
+            newNote.setId(Integer.parseInt(params[1].split("=")[1]));
+            newNote.setTitle(params[2].split("=")[1]);
+            newNote.setContent(params[3].split("=")[1]);
+
+            SimpleDateFormat format = new SimpleDateFormat();
+            format.applyPattern("yyyy-MM-dd");
+            Date date;
+
             date = format.parse(params[4].split("=")[1]);
             newNote.setD(date);
 

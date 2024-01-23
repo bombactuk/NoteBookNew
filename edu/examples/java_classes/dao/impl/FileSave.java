@@ -10,7 +10,7 @@ public class FileSave {
 
     public static void dataStorage(List<Note> notes) throws DaoException {
 
-        try (FileWriter writer = new FileWriter("mibook.txt", false)) {
+        try (FileWriter writer = new FileWriter("mubook.txt", false)) {
 
             for (Note s : notes) {
                 writer.write(s.getId() +

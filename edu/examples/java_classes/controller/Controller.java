@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.examples.java_classes.entity.Note;
+import edu.examples.java_classes.logic.LogicException;
 import edu.examples.java_classes.logic.LogicProvider;
 import edu.examples.java_classes.logic.NotebookLogic;
 
@@ -24,7 +25,12 @@ public class Controller {
         executionCommand = provider.getCommand(commandName.toUpperCase());
 
         String response;
-        response = executionCommand.execute(request);
+
+        try {
+            response = executionCommand.execute(request);
+        } catch (LogicException e) {
+            throw new RuntimeException(e);
+        }
 
         return response;
 

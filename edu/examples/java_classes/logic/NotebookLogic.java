@@ -7,19 +7,19 @@ import edu.examples.java_classes.entity.Note;
 
 public interface NotebookLogic {
 
-    void add(Note n);
+    void add(Note n) throws LogicException;
 
-    void delete(int idDelete);
+    void delete(int idDelete) throws LogicException;
 
-    void clear();
+    void clear() throws LogicException;
 
-    void sortNotesTitle();
+    void sortNotesTitle() throws LogicException;
 
-    void sortNotesContent();
+    void sortNotesContent() throws LogicException;
 
-    List<Note> find(String text);
+    List<Note> find(String text) throws LogicException;
 
-    List<Note> find(Date date);
+    List<Note> find(Date date) throws LogicException;
 
-    List<Note> allNotes();
+    List<Note> allNotes() throws LogicException;
 }

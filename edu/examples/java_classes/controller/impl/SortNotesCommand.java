@@ -1,6 +1,7 @@
 package edu.examples.java_classes.controller.impl;
 
 import edu.examples.java_classes.controller.Command;
+import edu.examples.java_classes.logic.LogicException;
 import edu.examples.java_classes.logic.LogicProvider;
 import edu.examples.java_classes.logic.NotebookLogic;
 
@@ -10,7 +11,7 @@ public class SortNotesCommand implements Command {
     private final NotebookLogic logic = logicProvider.getNotebookLogic();
 
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws LogicException {
 
         String response = null;
         String[] params;
@@ -22,15 +23,23 @@ public class SortNotesCommand implements Command {
         switch (sortField) {
             case "Title": {
 
-                logic.sortNotesTitle();
-                response = "Записи отсортированы по Title.";
+                try {
+                    logic.sortNotesTitle();
+                    response = "Записи отсортированы по Title.";
+                } catch (RuntimeException e) {
+                    throw new LogicException(e);
+                }
                 break;
 
             }
             case "Content": {
 
-                logic.sortNotesContent();
-                response = "Записи отсортированы по Content.";
+                try {
+                    logic.sortNotesContent();
+                    response = "Записи отсортированы по Content.";
+                } catch (RuntimeException e) {
+                    throw new LogicException(e);
+                }
                 break;
 
             }

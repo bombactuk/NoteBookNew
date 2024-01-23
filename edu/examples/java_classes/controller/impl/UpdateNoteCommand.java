@@ -6,6 +6,7 @@ import java.util.Date;
 
 import edu.examples.java_classes.controller.Command;
 import edu.examples.java_classes.entity.Note;
+import edu.examples.java_classes.logic.LogicException;
 import edu.examples.java_classes.logic.LogicProvider;
 import edu.examples.java_classes.logic.NotebookLogic;
 
@@ -15,7 +16,7 @@ public class UpdateNoteCommand implements Command {
     private final NotebookLogic logic = logicProvider.getNotebookLogic();
 
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws LogicException {
 
         String response = null;
         String[] params;
@@ -31,19 +32,18 @@ public class UpdateNoteCommand implements Command {
         SimpleDateFormat format = new SimpleDateFormat();
         format.applyPattern("yyyy-mm-dd");
         Date date;
-        try {
 
+        try {
             date = format.parse(params[4].split("=")[1]);
             newNote.setD(date);
 
             logic.add(newNote);
+
             response = "Запись обновлена успешно.";
 
-        } catch (ParseException e) {
-
-            e.printStackTrace();
+        } catch (RuntimeException | ParseException e) {
             response = "Запись необновлена.";
-
+            throw new LogicException(e);
         }
 
         return response;

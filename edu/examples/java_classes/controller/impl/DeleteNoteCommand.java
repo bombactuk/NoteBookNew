@@ -2,6 +2,7 @@ package edu.examples.java_classes.controller.impl;
 
 import edu.examples.java_classes.controller.Command;
 import edu.examples.java_classes.entity.Note;
+import edu.examples.java_classes.logic.LogicException;
 import edu.examples.java_classes.logic.LogicProvider;
 import edu.examples.java_classes.logic.NotebookLogic;
 
@@ -14,7 +15,7 @@ public class DeleteNoteCommand implements Command {
 
 
     @Override
-    public String execute(String request) {
+    public String execute(String request) throws LogicException {
 
         String response = null;
         String[] params;
@@ -23,16 +24,15 @@ public class DeleteNoteCommand implements Command {
         params = request.split("\n");
 
         try {
-
             idDelete = Integer.parseInt(params[1].split("=")[1].replace("id=", "")) - 1;
+
             logic.delete(idDelete);
-            response = "Запись удаление успешно.";
 
-        } catch (NumberFormatException e) {
+            response = "Запись удалена успешно.";
 
-            e.printStackTrace();
+        } catch (RuntimeException e) {
             response = "Запись не удалена.";
-
+            throw new LogicException(e);
         }
 
         return response;

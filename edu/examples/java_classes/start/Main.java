@@ -16,7 +16,11 @@ public class Main {
         response = controller.doAction(request);
         System.out.println(response);
 
-        request = "UPDATE\nid=2\ntitle=Книга\ncontent=Туманность Андромеды\ndate=2023-08-08";
+        request = "ADD\ntitle=Книга\nсоntent=Гарри Поттер";
+        response = controller.doAction(request);
+        System.out.println(response);
+
+        request = "UPDATE\nid=2\ntitle=Книга\ncontent=Гарри Поттер 2 часть\ndate=2023-08-08";
         response = controller.doAction(request);
         System.out.println(response);
 
@@ -29,10 +33,6 @@ public class Main {
         System.out.println(response);
 
         request = "SORT\nContent";
-        response = controller.doAction(request);
-        System.out.println(response);
-
-        request = "OUTPUT\n";
         response = controller.doAction(request);
         System.out.println(response);
 

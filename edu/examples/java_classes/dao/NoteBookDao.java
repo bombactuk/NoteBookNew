@@ -7,16 +7,16 @@ import edu.examples.java_classes.entity.Note;
 
 public interface NoteBookDao {
 
-    void save(Note n);
+    void save(Note n) throws DaoException;
 
-    void delete(int idDelete);
+    void delete(int idDelete) throws DaoException;
 
-    void clear();
+    void clear() throws DaoException;
 
-    void sortNotesTitle();
+    void sortNotesTitle() throws DaoException;
 
-    void sortNotesContent();
+    void sortNotesContent() throws DaoException;
 
-    List<Note> allNotes();
+    List<Note> allNotes() throws DaoException;
 
 }

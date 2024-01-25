@@ -24,25 +24,25 @@ public class Main {
         response = controller.doAction(request);
         System.out.println(response);
 
-        //  request = "DELETE\nid=1";
-        //  response = controller.doAction(request);
-        // System.out.println(response);
+        request = "DELETE\nid=1";
+        response = controller.doAction(request);
+        System.out.println(response);
 
-        //  request = "DELETE\nnumber=1";
-        // response = controller.doAction(request);
-        //  System.out.println(response);
+        request = "DELETE\nnumber=1";
+        response = controller.doAction(request);
+        System.out.println(response);
 
-        // request = "SORT\ntitle";
-        // response = controller.doAction(request);
-        // System.out.println(response);
+        request = "SORT\ntitle";
+        response = controller.doAction(request);
+        System.out.println(response);
 
-        //   request = "SORT\ncontent";
-        //   response = controller.doAction(request);
-        //   System.out.println(response);
+        request = "SORT\ncontent";
+        response = controller.doAction(request);
+        System.out.println(response);
 
-        //request = "CLEAR\n";
-        //response = controller.doAction(request);
-        // System.out.println(response);
+        request = "CLEAR\n";
+        response = controller.doAction(request);
+        System.out.println(response);
 
     }
 

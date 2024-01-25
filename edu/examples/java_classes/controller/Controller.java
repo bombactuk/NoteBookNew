@@ -20,16 +20,15 @@ public class Controller {
 
         String commandName;
         Command executionCommand;
-
-        commandName = request.substring(0, request.indexOf(paramDelimeter));
-        executionCommand = provider.getCommand(commandName.toUpperCase());
-
         String response;
 
         try {
+            commandName = request.substring(0, request.indexOf(paramDelimeter));
+            executionCommand = provider.getCommand(commandName.toUpperCase());
+
             response = executionCommand.execute(request);
-        } catch (LogicException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            response = "Технические проблемы";
         }
 
         return response;

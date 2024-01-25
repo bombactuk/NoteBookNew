@@ -11,34 +11,34 @@ public class SortNotesCommand implements Command {
     private final NotebookLogic logic = logicProvider.getNotebookLogic();
 
     @Override
-    public String execute(String request) throws LogicException {
+    public String execute(String request) {
 
         String response = null;
         String[] params;
-        String sortField;
 
         params = request.split("\n");
-        sortField = params[1];
 
-        switch (sortField) {
-            case "Title": {
+        switch (params[1]) {
+            case "title": {
 
                 try {
                     logic.sortNotesTitle();
                     response = "Записи отсортированы по Title.";
-                } catch (RuntimeException e) {
-                    throw new LogicException(e);
+
+                } catch (LogicException e) {
+                    response = "Записи не отсортированы";
                 }
                 break;
 
             }
-            case "Content": {
+            case "content": {
 
                 try {
                     logic.sortNotesContent();
                     response = "Записи отсортированы по Content.";
-                } catch (RuntimeException e) {
-                    throw new LogicException(e);
+
+                } catch (LogicException e) {
+                    response = "Записи не отсортированы";
                 }
                 break;
 

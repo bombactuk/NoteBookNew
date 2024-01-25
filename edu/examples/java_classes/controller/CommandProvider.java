@@ -15,8 +15,8 @@ public class CommandProvider {
         repository.put(CommandName.WRONG_REQUEST, new NoSuchCommand());
         repository.put(CommandName.DELETE, new DeleteNoteCommand());
         repository.put(CommandName.SORT, new SortNotesCommand());
-        repository.put(CommandName.OUTPUT, new OutputNoteCommand());
         repository.put(CommandName.CLEAR, new ClearNoteCommand());
+
     }
 
     Command getCommand(String name) {

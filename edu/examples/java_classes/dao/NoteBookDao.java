@@ -9,7 +9,9 @@ public interface NoteBookDao {
 
     void save(Note n) throws DaoException;
 
-    void delete(int idDelete) throws DaoException;
+    void deleteNumberList(int numberInTheListDelete) throws DaoException;
+
+    void deleteIdList(int idListDelete) throws DaoException;
 
     void clear() throws DaoException;
 

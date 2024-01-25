@@ -12,7 +12,7 @@ public class AddNoteCommand implements Command {
     private final NotebookLogic logic = logicProvider.getNotebookLogic();
 
     @Override
-    public String execute(String request) throws LogicException {
+    public String execute(String request) {
 
         String response = null;
         String[] params;
@@ -30,9 +30,8 @@ public class AddNoteCommand implements Command {
 
             response = "Запись сохранена успешно.";
 
-        } catch (RuntimeException e) {
+        } catch (LogicException e) {
             response = "Запись не сохранена.";
-            throw new LogicException(e);
         }
 
         return response;

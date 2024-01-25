@@ -16,6 +16,8 @@ public class NotebookLogicImpl implements NotebookLogic {
     private final DaoProvider provider = DaoProvider.getInstance();
     private final NoteBookDao dao = provider.getNoteBookDao();
 
+
+    @Override
     public void add(Note n) throws LogicException {
         try {
             dao.save(n);
@@ -25,9 +27,18 @@ public class NotebookLogicImpl implements NotebookLogic {
     }
 
     @Override
-    public void delete(int idDelete) throws LogicException {
+    public void deleteNumberList(int numberInTheListDelete) throws LogicException {
         try {
-            dao.delete(idDelete);
+            dao.deleteNumberList(numberInTheListDelete);
+        } catch (DaoException e) {
+            throw new LogicException(e);
+        }
+    }
+
+    @Override
+    public void deleteIdList(int idListDelete) throws LogicException {
+        try {
+            dao.deleteIdList(idListDelete);
         } catch (DaoException e) {
             throw new LogicException(e);
         }
@@ -42,7 +53,7 @@ public class NotebookLogicImpl implements NotebookLogic {
         }
     }
 
-
+    @Override
     public void sortNotesTitle() throws LogicException {
         try {
             dao.sortNotesTitle();
@@ -51,62 +62,10 @@ public class NotebookLogicImpl implements NotebookLogic {
         }
     }
 
+    @Override
     public void sortNotesContent() throws LogicException {
         try {
             dao.sortNotesContent();
-        } catch (DaoException e) {
-            throw new LogicException(e);
-        }
-    }
-
-    public List<Note> find(String text) throws LogicException {
-
-        List<Note> result = new ArrayList<>();
-
-        try {
-            List<Note> myNotes = dao.allNotes();
-            for (Note n : myNotes) {
-                if (isTextInNote(n, text)) {
-                    result.add(n);
-                }
-            }
-        } catch (DaoException e) {
-            throw new LogicException(e);
-        }
-
-        return result;
-
-    }
-
-    private boolean isTextInNote(Note n, String text) {
-        return n.getTitle().contains(text) || n.getContent().contains(text);
-    }
-
-
-    public List<Note> find(Date date) throws LogicException {
-
-        List<Note> result = new ArrayList<>();
-
-        try {
-            List<Note> myNotes = dao.allNotes();
-
-            for (Note myNote : myNotes) {
-                if (myNote.getD().equals(date)) {
-                    result.add(myNote);
-                }
-            }
-        } catch (DaoException e) {
-            throw new LogicException(e);
-        }
-
-        return result;
-
-    }
-
-
-    public List<Note> allNotes() throws LogicException {
-        try {
-            return dao.allNotes();
         } catch (DaoException e) {
             throw new LogicException(e);
         }

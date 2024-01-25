@@ -20,8 +20,18 @@ public class MockSource {
         notes.clear();
     }
 
-    public static void delete(int idDelete) {
-        notes.remove(idDelete);
+    public static void deleteNumberList(int numberInTheListDelete) {
+        notes.remove(numberInTheListDelete);
+    }
+
+    public static void deleteIdList(int idListDelete) {
+
+        for (int i = 0; i < notes.size(); i++) {
+            if (notes.get(i).getId() == idListDelete) {
+                notes.remove(i);
+            }
+        }
+
     }
 
     public static void sortNotesTitle() {

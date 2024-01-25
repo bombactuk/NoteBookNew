@@ -10,45 +10,50 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public final class DaoProvider {
 
-    private static final DaoProvider INSTANCE = new DaoProvider();
+    private static final DaoProvider INSTANCE;
 
-    private DaoProvider() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("mubook.txt"))) {
-
-            String[] params;
-            Note newNote = new Note();
-
-            // SimpleDateFormat format = new SimpleDateFormat();
-            // format.applyPattern("yyyy-MM-dd");
-            // Date date;
-
-            String line = reader.readLine();
-
-            while (line != null) {
-
-                params = line.split(" ");
-
-                newNote = new Note();
-
-                newNote.setId(Integer.parseInt(params[1].split(":")[1]));
-                newNote.setTitle(params[2].split(":")[1]);
-                newNote.setContent(params[3].split(":")[1]);
-
-                // date = format.parse(params[4].split(":")[1]);
-                //  newNote.setD(date);
-
-                MockSource.add(newNote);
-
-                line = reader.readLine();
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+    static {
+        try {
+            INSTANCE = new DaoProvider();
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
         }
+    }
+
+    private static final String FILE_NAME = "textFile.txt";
+
+    private DaoProvider() throws IOException, ParseException {
+
+        BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME));
+
+        String[] params;
+        Note newNote;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        String line = reader.readLine();
+
+        while (line != null) {
+
+            params = line.split("/");
+
+            newNote = new Note();
+
+            newNote.setId(Integer.parseInt(params[1].split("=")[1]));
+            newNote.setTitle(params[2].split("=")[1]);
+            newNote.setContent(params[3].split("=")[1]);
+            newNote.setDate(format.parse(params[4].split("=")[1]));
+
+            MockSource.add(newNote);
+
+            line = reader.readLine();
+
+        }
+
+        reader.close();
 
     }
 
@@ -62,5 +67,8 @@ public final class DaoProvider {
         return INSTANCE;
     }
 
+    public static String getFileName() {
+        return FILE_NAME;
+    }
 
 }

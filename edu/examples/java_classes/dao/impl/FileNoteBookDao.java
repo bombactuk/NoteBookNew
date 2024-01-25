@@ -1,9 +1,6 @@
 package edu.examples.java_classes.dao.impl;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 
@@ -21,49 +18,87 @@ public class FileNoteBookDao implements NoteBookDao {
             n.setId(MockSource.countOfNotes() + 1);
         }
 
-        if (n.getD() == null) {
-            n.setD(new Date());
+        if (n.getDate() == null) {
+            n.setDate(new Date());
         }
 
-        MockSource.add(n);
+        try {
 
-        FileSave.dataStorage(MockSource.get());
+            MockSource.add(n);
+
+            FileSave.dataStorage(MockSource.get());
+
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
 
     }
 
     @Override
-    public void delete(int idDelete) throws DaoException {
+    public void deleteNumberList(int numberInTheListDelete) throws DaoException {
 
-        MockSource.delete(idDelete);
+        try {
+            MockSource.deleteNumberList(numberInTheListDelete);
 
-        FileSave.dataStorage(MockSource.get());
+            FileSave.dataStorage(MockSource.get());
 
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
+
+    }
+
+    @Override
+    public void deleteIdList(int idListDelete) throws DaoException {
+        try {
+            MockSource.deleteIdList(idListDelete);
+
+            FileSave.dataStorage(MockSource.get());
+
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
     }
 
     @Override
     public void clear() throws DaoException {
 
-        MockSource.clear();
+        try {
+            MockSource.clear();
 
-        FileSave.dataStorage(MockSource.get());
+            FileSave.dataStorage(MockSource.get());
+
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
 
     }
 
     @Override
     public void sortNotesTitle() throws DaoException {
 
-        MockSource.sortNotesTitle();
+        try {
+            MockSource.sortNotesTitle();
 
-        FileSave.dataStorage(MockSource.get());
+            FileSave.dataStorage(MockSource.get());
+
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
 
     }
 
     @Override
     public void sortNotesContent() throws DaoException {
 
-        MockSource.sortNotesContent();
+        try {
+            MockSource.sortNotesContent();
 
-        FileSave.dataStorage(MockSource.get());
+            FileSave.dataStorage(MockSource.get());
+
+        } catch (IOException e) {
+            throw new DaoException(e);
+        }
 
     }
 

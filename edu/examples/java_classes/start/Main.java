@@ -12,37 +12,37 @@ public class Main {
         String request;
         String response;
 
-        request = "ADD\ntitle=Книга\nсоntent=ТуманностьАндромеды";
+        request = "ADD\ntitle=Книга\nсоntent=Туманность Андромеды";
         response = controller.doAction(request);
         System.out.println(response);
 
-        request = "ADD\ntitle=Книга\nсоntent=ГарриПоттер";
+        request = "ADD\ntitle=Книга\nсоntent=Гарри Поттер";
         response = controller.doAction(request);
         System.out.println(response);
 
-        //    request = "UPDATE\nid=2\ntitle=Книга\ncontent=ГарриПоттер2часть";
-        //    response = controller.doAction(request);
+        request = "UPDATE\nid=2\ntitle=Книга\ncontent=Гарри Поттер 2часть";
+        response = controller.doAction(request);
+        System.out.println(response);
+
+        //  request = "DELETE\nid=1";
+        //  response = controller.doAction(request);
+        // System.out.println(response);
+
+        //  request = "DELETE\nnumber=1";
+        // response = controller.doAction(request);
+        //  System.out.println(response);
+
+        // request = "SORT\ntitle";
+        // response = controller.doAction(request);
+        // System.out.println(response);
+
+        //   request = "SORT\ncontent";
+        //   response = controller.doAction(request);
         //   System.out.println(response);
 
-        request = "DELETE\nid=1";
-        response = controller.doAction(request);
-        System.out.println(response);
-
-        request = "SORT\nTitle";
-        response = controller.doAction(request);
-        System.out.println(response);
-
-        request = "SORT\nContent";
-        response = controller.doAction(request);
-        System.out.println(response);
-
-        request = "CLEAR\n";
-        response = controller.doAction(request);
-        System.out.println(response);
-
-        request = "OUTPUT\n";
-        response = controller.doAction(request);
-        System.out.println(response);
+        //request = "CLEAR\n";
+        //response = controller.doAction(request);
+        // System.out.println(response);
 
     }
 

@@ -9,7 +9,9 @@ public interface NotebookLogic {
 
     void add(Note n) throws LogicException;
 
-    void delete(int idDelete) throws LogicException;
+    void deleteNumberList(int numberInTheListDelete) throws LogicException;
+
+    void deleteIdList(int idListDelete) throws LogicException;
 
     void clear() throws LogicException;
 
@@ -17,9 +19,4 @@ public interface NotebookLogic {
 
     void sortNotesContent() throws LogicException;
 
-    List<Note> find(String text) throws LogicException;
-
-    List<Note> find(Date date) throws LogicException;
-
-    List<Note> allNotes() throws LogicException;
 }

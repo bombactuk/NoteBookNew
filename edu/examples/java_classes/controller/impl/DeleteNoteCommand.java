@@ -15,27 +15,54 @@ public class DeleteNoteCommand implements Command {
 
 
     @Override
-    public String execute(String request) throws LogicException {
+    public String execute(String request) {
 
         String response = null;
         String[] params;
-        int idDelete;
 
         params = request.split("\n");
+        params = params[1].split("=");
 
-        try {
-            idDelete = Integer.parseInt(params[1].split("=")[1].replace("id=", "")) - 1;
+        switch (params[0]) {
 
-            logic.delete(idDelete);
+            case "number": {
 
-            response = "Запись удалена успешно.";
+                try {
 
-        } catch (RuntimeException e) {
-            response = "Запись не удалена.";
-            throw new LogicException(e);
+                    logic.deleteNumberList(Integer.parseInt(params[1]) - 1);
+
+                    response = "Запись удалена успешно.";
+
+                } catch (LogicException|NumberFormatException e) {
+                    response = "Запись не удалена.";
+                }
+
+                break;
+
+            }
+
+            case "id": {
+                try {
+
+                    logic.deleteIdList(Integer.parseInt(params[1]));
+
+                    response = "Запись удалена успешно.";
+
+                } catch (LogicException|NumberFormatException e) {
+                    response = "Запись не удалена.";
+                }
+
+                break;
+            }
+
+            default: {
+                response = "Удаление по полю не найдено";
+            }
+
         }
 
         return response;
 
     }
+
 }

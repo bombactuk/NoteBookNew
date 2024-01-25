@@ -1,28 +1,31 @@
 package edu.examples.java_classes.dao.impl;
 
-import edu.examples.java_classes.dao.DaoException;
+import edu.examples.java_classes.dao.DaoProvider;
 import edu.examples.java_classes.entity.Note;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class FileSave {
+public final class FileSave {
 
-    public static void dataStorage(List<Note> notes) throws DaoException {
+    private FileSave() {
+    }
 
-        try (FileWriter writer = new FileWriter("mubook.txt", false)) {
+    public static void dataStorage(List<Note> notes) throws IOException {
 
-            for (Note s : notes) {
-                writer.write(" Id:" + s.getId() +
-                        " Title:" + s.getTitle() +
-                        " Content:" + s.getContent() +
-                        " Date:" + s.getD());
-                writer.append("\n");
-            }
+        FileWriter writer = new FileWriter(DaoProvider.getFileName(), false);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        } catch (IOException e) {
-            throw new DaoException(e);
+        for (Note s : notes) {
+            writer.write("/Id=" + s.getId() +
+                    "/Title=" + s.getTitle() +
+                    "/Content=" + s.getContent() +
+                    "/Date=" + formatter.format(s.getDate()));
+            writer.append("\n");
         }
+
+        writer.close();
 
     }
 
